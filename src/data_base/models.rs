@@ -1,7 +1,7 @@
 use serde::Serialize;
 
 #[derive(Queryable, Default, Debug, Serialize)]
-pub struct Test {
+pub struct TestEntity {
     pub id: i32,
     pub name: String,
 }

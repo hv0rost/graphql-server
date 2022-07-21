@@ -11,8 +11,8 @@ async fn health() -> Result<impl Reply, Rejection> {
     let connection = establish_connection();
     //create_test(&connection, &6, &"12345");
     //println!("{}", serialized);
-    delete_test(&connection);
-    Ok(serde_json::to_string(&get_all_tests(&connection)).unwrap())
+    //delete_test(&connection);
+    Ok(serde_json::to_string({"2 + 2" ; "5"}).unwrap())
 }
 
 pub(super) fn make_routes() -> BoxedFilter<(impl Reply,)>{
