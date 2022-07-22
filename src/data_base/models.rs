@@ -10,7 +10,6 @@ use super::schema::test;
 
 #[derive(Insertable)]
 #[table_name="test"]
-pub struct NewTest<'a> {
-    pub id: &'a i32,
-    pub name: &'a str,
+pub struct NewTestEntity {
+    pub name: String,
 }

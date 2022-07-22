@@ -1,5 +1,5 @@
 [package]
-name = "graphqlLearn"
+name = "graphql-server"
 version = "0.1.0"
 edition = "2021"
 
@@ -24,8 +24,7 @@ async-graphql = "4.0.4"
 async-graphql-warp = "4.0.4"
 
 #ORM
-diesel = { version = "1.4.8", features = ["postgres", "r2d2"] }
-diesel_migrations = "1.4.0"
+diesel = { version = "1.4.8", features = ["postgres"] }
 
 #env var
 dotenv = "0.15.0"

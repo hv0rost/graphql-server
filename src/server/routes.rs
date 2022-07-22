@@ -1,16 +1,12 @@
-use crate::{create_connection, gql_schema};
+use crate::gql_schema;
 
 use warp::{Reply, Rejection, Filter, filters::BoxedFilter, http::Response};
 use async_graphql::{Schema, Request, http::playground_source, http::GraphQLPlaygroundConfig};
 use std::convert::Infallible;
 use async_graphql_warp::GraphQLResponse;
-use crate::data_base::connection::PgPool;
-use crate::data_base::db_req::create_test;
 
 //Check the server is alive
 async fn test() -> Result<impl Reply, Rejection> {
-/*    let anal = create_connection();
-    create_test(&anal, &6, "12");*/
     Ok(serde_json::to_string({"2 + 2" ; "5"}).unwrap())
 }
 
