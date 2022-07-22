@@ -6,6 +6,7 @@ extern crate log;
 mod server;
 mod gql_schema;
 mod data_base;
+mod db_requests;
 
 
 #[tokio::main]

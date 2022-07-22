@@ -1,13 +1,8 @@
-mod test;
+mod graphql;
+mod graphql_fields;
 
-use async_graphql::{Schema, SchemaBuilder, MergedObject, EmptySubscription};
-use crate::gql_schema::test::Mutation;
-
-#[derive(MergedObject, Default)]
-pub struct Query(test::TestQuery);
-
-/*#[derive(MergedObject, Default)]
-pub struct Mutation(test::Mutation);*/
+use async_graphql::{Schema, SchemaBuilder, EmptySubscription};
+use crate::gql_schema::graphql::{Mutation, Query};
 
 //Build the GraphQL gql_schema.
 pub fn build_schema() -> SchemaBuilder<Query, Mutation, EmptySubscription >{

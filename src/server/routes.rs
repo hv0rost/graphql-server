@@ -6,15 +6,15 @@ use std::convert::Infallible;
 use async_graphql_warp::GraphQLResponse;
 
 //Check the server is alive
-async fn test() -> Result<impl Reply, Rejection> {
-    Ok(serde_json::to_string({"2 + 2" ; "5"}).unwrap())
+async fn end_route() -> Result<impl Reply, Rejection> {
+    Ok(serde_json::to_string({"2 + 2" ; "server is running..."}).unwrap())
 }
 
 pub(super) fn make_routes() -> BoxedFilter<(impl Reply,)>{
     //Build the GraphQL gql_schema
     let schema = gql_schema::build_schema().finish();
 
-    let test = warp::path::end().and_then(test);
+    let end_route = warp::path::end().and_then(end_route);
 
     //GraphQL query handler.
     let graphql_handler = warp::post().and(warp::path("graphql").and(
@@ -32,7 +32,7 @@ pub(super) fn make_routes() -> BoxedFilter<(impl Reply,)>{
     });
 
     //Wire together all the routs.
-    test
+    end_route
         .or(graphql_handler)
         .or(graphql_playground)
         .boxed()
