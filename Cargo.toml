@@ -24,5 +24,8 @@ async-graphql = "4.0.4"
 async-graphql-warp = "4.0.4"
 
 #ORM
-diesel = { version = "1.4.4", features = ["postgres", "r2d2"] }
+diesel = { version = "1.4.8", features = ["postgres", "r2d2"] }
+diesel_migrations = "1.4.0"
+
+#env var
 dotenv = "0.15.0"

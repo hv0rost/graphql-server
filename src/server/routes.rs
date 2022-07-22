@@ -1,17 +1,16 @@
-use crate::gql_schema;
+use crate::{create_connection, gql_schema};
 
 use warp::{Reply, Rejection, Filter, filters::BoxedFilter, http::Response};
 use async_graphql::{Schema, Request, http::playground_source, http::GraphQLPlaygroundConfig};
 use std::convert::Infallible;
 use async_graphql_warp::GraphQLResponse;
-use crate::data_base::{connection::establish_connection, db_req::*};
+use crate::data_base::connection::PgPool;
+use crate::data_base::db_req::create_test;
 
 //Check the server is alive
-async fn health() -> Result<impl Reply, Rejection> {
-    let connection = establish_connection();
-    //create_test(&connection, &6, &"12345");
-    //println!("{}", serialized);
-    //delete_test(&connection);
+async fn test() -> Result<impl Reply, Rejection> {
+/*    let anal = create_connection();
+    create_test(&anal, &6, "12");*/
     Ok(serde_json::to_string({"2 + 2" ; "5"}).unwrap())
 }
 
@@ -19,7 +18,7 @@ pub(super) fn make_routes() -> BoxedFilter<(impl Reply,)>{
     //Build the GraphQL gql_schema
     let schema = gql_schema::build_schema().finish();
 
-    let health = warp::path::end().and_then(health);
+    let test = warp::path::end().and_then(test);
 
     //GraphQL query handler.
     let graphql_handler = warp::post().and(warp::path("graphql").and(
@@ -37,7 +36,7 @@ pub(super) fn make_routes() -> BoxedFilter<(impl Reply,)>{
     });
 
     //Wire together all the routs.
-    health
+    test
         .or(graphql_handler)
         .or(graphql_playground)
         .boxed()
