@@ -50,10 +50,11 @@ impl Mutation {
         Ok(Store::from(&created_store_entity))
     }
 
-    async fn create_customer(&self, name : String, data: Option<serde_json::Value>) -> Result<Customer> {
+    async fn create_customer(&self, name : String, data: Option<serde_json::Value>, date : Option<chrono::NaiveDateTime>) -> Result<Customer> {
         let new_customer = NewCustomerEntity {
             name,
             data,
+            date,
         };
 
         let created_customer_entity =

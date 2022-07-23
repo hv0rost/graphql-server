@@ -35,6 +35,7 @@ pub struct Customer {
     id: i32,
     name: String,
     data : Option<serde_json::Value>,
+    date : Option<chrono::NaiveDateTime>,
 }
 
 #[Object]
@@ -48,6 +49,7 @@ impl Customer {
     async fn data(&self) -> &Option<serde_json::Value> {
         &self.data
     }
+    async fn date(&self) -> &Option<chrono::NaiveDateTime> { &self.date }
 }
 
 impl From<&CustomersEntity> for Customer {
@@ -56,6 +58,7 @@ impl From<&CustomersEntity> for Customer {
             id: customer.id.into(),
             name: customer.name.clone(),
             data: customer.data.clone(),
+            date: customer.date.clone(),
         }
     }
 }

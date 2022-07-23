@@ -3,6 +3,7 @@ table! {
         id -> Int4,
         name -> Varchar,
         data -> Nullable<Jsonb>,
+        date -> Nullable<Timestamp>,
     }
 }
 
