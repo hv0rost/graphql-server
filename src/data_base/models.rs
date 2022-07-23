@@ -22,10 +22,12 @@ pub struct NewStoreEntity {
 pub struct CustomersEntity{
     pub id : i32,
     pub name : String,
+    pub data : Option<serde_json::Value>
 }
 
 #[derive(Insertable)]
 #[table_name="customers"]
 pub struct NewCustomerEntity {
     pub name: String,
+    pub data: Option<serde_json::Value>,
 }

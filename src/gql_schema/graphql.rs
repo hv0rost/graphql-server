@@ -47,8 +47,18 @@ impl Mutation {
 
         let created_store_entity =
             store::create_store(new_store, &establish_connection())?;
-
         Ok(Store::from(&created_store_entity))
+    }
+
+    async fn create_customer(&self, name : String, data: Option<serde_json::Value>) -> Result<Customer> {
+        let new_customer = NewCustomerEntity {
+            name,
+            data,
+        };
+
+        let created_customer_entity =
+            customers::create_customer(new_customer, &establish_connection())?;
+        Ok(Customer::from(&created_customer_entity))
     }
 
     async fn delete_store(&self, id : i32) -> Result<Store>{

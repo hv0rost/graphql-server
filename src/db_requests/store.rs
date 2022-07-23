@@ -12,9 +12,9 @@ pub fn get_stores_from_customer_name(conn: &PgConnection, customers_name : Strin
     stores::table.filter(stores::clients.eq(id)).load(conn)
 }
 
-pub fn create_store(new_test : NewStoreEntity, conn : &PgConnection) -> QueryResult<StoreEntity> {
+pub fn create_store(new_store : NewStoreEntity, conn : &PgConnection) -> QueryResult<StoreEntity> {
     let created_store: StoreEntity = diesel::insert_into(stores::table)
-        .values(new_test)
+        .values(new_store)
         .get_result(conn)?;
     Ok(created_store)
 }

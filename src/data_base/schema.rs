@@ -2,6 +2,7 @@ table! {
     customers (id) {
         id -> Int4,
         name -> Varchar,
+        data -> Nullable<Jsonb>,
     }
 }
 

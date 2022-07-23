@@ -34,6 +34,7 @@ impl From<&StoreEntity> for Store {
 pub struct Customer {
     id: i32,
     name: String,
+    data : Option<serde_json::Value>,
 }
 
 #[Object]
@@ -44,6 +45,9 @@ impl Customer {
     async fn name(&self) -> &String {
         &self.name
     }
+    async fn data(&self) -> &Option<serde_json::Value> {
+        &self.data
+    }
 }
 
 impl From<&CustomersEntity> for Customer {
@@ -51,6 +55,7 @@ impl From<&CustomersEntity> for Customer {
         Customer {
             id: customer.id.into(),
             name: customer.name.clone(),
+            data: customer.data.clone(),
         }
     }
 }
